@@ -10,3 +10,9 @@ VirtualBox fakes the hardware, the containers fake the Operating System
 ```
 g++ -E first.cpp>pre   
 ```
+
+Compile the code into assembly
+
+```
+g++ -S first.cpp
+```
