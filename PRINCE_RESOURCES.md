@@ -21,6 +21,8 @@ Compile the code into assembly
 g++ -c first.cpp
 ```
 
+Unnamed scope exists in C++
+
 CMakeLists.txt
 
 -std tag = choose c++ version
