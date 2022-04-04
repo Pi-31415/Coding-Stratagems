@@ -12,4 +12,4 @@ My personal accumulation of best pratices and strategies in software development
 
 ## C++
 - Use of inline functions is more efficient
-- Use '\n' instead of endl 
+- Use '\n' instead of endl. \n does not call a flushing output buffer everytime it is called, so it is more efficient.
