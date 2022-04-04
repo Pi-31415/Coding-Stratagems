@@ -16,3 +16,6 @@ Compile the code into assembly
 ```
 g++ -S first.cpp
 ```
+
+## Monitoring Processes on Computers 
+- brew install bpytop
