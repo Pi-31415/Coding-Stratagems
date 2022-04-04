@@ -24,6 +24,7 @@ g++ -c first.cpp
 -std tag = choose c++ version
 
 Makefile
+Full Tutorial : https://makefiletutorial.com/
 
 ## Monitoring Processes on Computers 
 - brew install bpytop
