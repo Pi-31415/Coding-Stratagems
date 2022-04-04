@@ -25,6 +25,7 @@ g++ -c first.cpp
 
 Makefile
 Full Tutorial : https://makefiletutorial.com/
+https://www3.ntu.edu.sg/home/ehchua/programming/cpp/gcc_make.html
 
 ## Monitoring Processes on Computers 
 - brew install bpytop
