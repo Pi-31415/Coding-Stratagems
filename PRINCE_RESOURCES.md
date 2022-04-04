@@ -11,11 +11,23 @@ VirtualBox fakes the hardware, the containers fake the Operating System
 g++ -E first.cpp>pre   
 ```
 
-Compile the code into assembly
-
 ```
+Compile the code into assembly
 g++ -S first.cpp
 ```
 
+```
+Compile the code into assembly
+g++ -c first.cpp
+```
+
+-std tag = choose c++ version
+
+Makefile
+
 ## Monitoring Processes on Computers 
 - brew install bpytop
+
+### Theory
+
+Instruction Set Architecture
