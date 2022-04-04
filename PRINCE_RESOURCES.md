@@ -21,6 +21,8 @@ Compile the code into assembly
 g++ -c first.cpp
 ```
 
+CMakeLists.txt
+
 -std tag = choose c++ version
 
 Makefile
