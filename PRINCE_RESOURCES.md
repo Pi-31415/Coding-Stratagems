@@ -47,3 +47,7 @@ On Linux
 ```
 ifconfig
 ```
+To send fake packet to system
+```
+ping
+```
