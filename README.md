@@ -9,6 +9,7 @@ My personal accumulation of best pratices and strategies in software development
 
 
 ## Object Oriented
+- 
 
 ## C++
 - Use of inline functions is more efficient
