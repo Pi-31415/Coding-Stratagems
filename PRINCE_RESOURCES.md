@@ -37,3 +37,13 @@ https://www3.ntu.edu.sg/home/ehchua/programming/cpp/gcc_make.html
 ### Theory
 
 Instruction Set Architecture
+
+### IP Address
+On Windows
+```
+ipconfig
+```
+On Linux
+```
+ifconfig
+```
