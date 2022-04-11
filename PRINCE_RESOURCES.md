@@ -79,3 +79,6 @@ To share files within macos
 
 ## FTP Open Source
 Clonezilla
+
+# Get Bash History
+On Mac, control+R and find the research search
