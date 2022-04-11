@@ -64,3 +64,17 @@ ping
 ```
 sudo systemctl samba
 ```
+
+On Windows, using Samba is to run and 
+```
+\\10.224.10.24
+```
+
+On Mac, using Samba is to go to Finder -> Go -> Connect to server
+
+On Android, cx file explorer.
+
+
+To share files within macos
+
+
