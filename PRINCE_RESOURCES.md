@@ -51,3 +51,7 @@ To send fake packet to system
 ```
 ping
 ```
+
+## File Sharing in Linux
+
+Use Samba Linux (https://www.samba.org/)
