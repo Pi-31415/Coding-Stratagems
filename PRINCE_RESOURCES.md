@@ -52,6 +52,15 @@ To send fake packet to system
 ping
 ```
 
-## File Sharing in Linux
+## File Sharing Protocols
 
-Use Samba Linux (https://www.samba.org/)
+-Use Samba Linux (https://www.samba.org/)
+-Apple Filing Protocol (AFP) on MacOS
+-FTP
+
+
+### Daemon in Linux to inspect samba file sharing protocol
+
+```
+sudo systemctl samba
+```
