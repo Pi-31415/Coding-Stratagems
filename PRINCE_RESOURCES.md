@@ -1,5 +1,10 @@
 ## Resources from Prince
 
+### Interview Questions (Struct vs Class) 
+- https://www.geeksforgeeks.org/structures-in-cpp/
+- In class, it's private or public.
+- In struct, everything is public.
+
 VirtualBox fakes the hardware, the containers fake the Operating System
 
 - bare metal hypervisor
