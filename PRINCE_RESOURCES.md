@@ -11,6 +11,7 @@
 ## Mutex vs Semaphore
 - Locking access abstraction
 - https://www.geeksforgeeks.org/mutex-vs-semaphore/
+- Issues : https://docs.oracle.com/cd/E19120-01/open.solaris/816-5137/6mba5vq11/index.html#:~:text=A%20problem%20exists%20if%20two,to%20lock%20the%20other%20mutex.
 
 VirtualBox fakes the hardware, the containers fake the Operating System
 
