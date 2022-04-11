@@ -82,3 +82,10 @@ Clonezilla
 
 # Get Bash History
 On Mac, control+R and find the research search
+
+# How to access quick sudo
+Add
+```
+sudo !!
+```
+And append sudo to previous command.
