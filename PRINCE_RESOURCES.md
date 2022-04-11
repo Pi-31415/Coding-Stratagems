@@ -5,6 +5,8 @@
 - In class, it's private or public.
 - In struct, everything is public.
 
+## How to see who call the function
+- In ROS call log in debug mode, provide their name
 
 ## Mutex vs Semaphore
 - Locking access abstraction
