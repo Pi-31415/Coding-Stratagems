@@ -97,3 +97,6 @@ And append sudo to previous command.
 
 ## Public vs Protected
 https://www.geeksforgeeks.org/difference-between-private-and-protected-in-c-with-example/
+
+## C++ Custom keywords
+- Wow, you can create your own keywords.
