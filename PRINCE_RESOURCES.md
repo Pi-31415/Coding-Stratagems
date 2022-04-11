@@ -5,6 +5,11 @@
 - In class, it's private or public.
 - In struct, everything is public.
 
+
+## Mutex vs Semaphore
+- Locking access abstraction
+- https://www.geeksforgeeks.org/mutex-vs-semaphore/
+
 VirtualBox fakes the hardware, the containers fake the Operating System
 
 - bare metal hypervisor
