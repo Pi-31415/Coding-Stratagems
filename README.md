@@ -9,7 +9,16 @@ My personal accumulation of best pratices and strategies in software development
 
 
 ## Object Oriented
-- 
+
+
+## Python
+- Quick setup virtual environment and set up packages
+```
+python3 -m venv packenv
+call packenv\scripts\activate.bat (Windows)
+source packenv/bin/activate (Linux/OSX)
+pip list
+```
 
 ## C++
 - Use of inline functions is more efficient
