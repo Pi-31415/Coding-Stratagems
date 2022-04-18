@@ -26,6 +26,7 @@ pip list
 - Pass by reference does not create a new variable, so it saves memory.
 - Use ``nullptr`` instead of ``NULL``. Because ``NULL`` is a macro for the 0 literal, and it can be ambigious with int data type.
 - Don't use ``friend`` unless you really need to, because it might accidentally change the data.
+- C++ is one of the two languages which supports **Multiple inheritance**. Never use it unless you have a really really good reason.
 
 ## C# (Unity)
 - For Physics based calculations (e.g. Forces on RigidBodies), put them in FixedUpdate() function instead of Update() - because Update() is called once per frame only, and FixedUpdate() can be called as many times as the physics engine needs.
