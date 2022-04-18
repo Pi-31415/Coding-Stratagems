@@ -20,6 +20,16 @@ source packenv/bin/activate (Linux/OSX)
 pip list
 ```
 
+## JavaScript
+- For d3.js, if you want to get the parent node from the data, use the following.
+```
+function node_mouseover(d) {
+  //Get the parent node
+  var g = d3.select(this);
+  }
+}
+```
+
 ## C++
 - Use of inline functions is more efficient
 - Use '\n' instead of endl. \n does not call a flushing output buffer everytime it is called, so it is more efficient.
