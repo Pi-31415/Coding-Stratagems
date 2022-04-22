@@ -10,6 +10,8 @@ My personal accumulation of best pratices and strategies in software development
 
 ## Object Oriented
 
+## NPM
+- If the builds doesn't work, it is likely that the software/dependency versions are not compatible with each other.
 
 ## Python
 - Quick setup virtual environment and set up packages
