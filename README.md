@@ -21,6 +21,20 @@ call packenv\scripts\activate.bat (Windows)
 source packenv/bin/activate (Linux/OSX)
 pip list
 ```
+- PIL Convert Image from Array
+```python
+from numpy import genfromtxt
+import numpy as np
+from PIL import Image as im
+my_data = genfromtxt('datamatrix1.txt', delimiter=',')
+my_data = np.delete(my_data, np.s_[-1:], axis=1)
+
+
+data = im.fromarray((my_data * 20).astype(np.uint8))
+
+data.save('aaaa16.png')
+
+```
 
 ## Markdown
 - Syntax highlighting can be done in code blocks by adding the name of the language after the triple quotes.
