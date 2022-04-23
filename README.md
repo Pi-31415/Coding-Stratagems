@@ -22,6 +22,9 @@ source packenv/bin/activate (Linux/OSX)
 pip list
 ```
 
+## Markdown
+- Syntax highlighting can be done in code blocks by adding the name of the language after the triple quotes.
+
 ## JavaScript
 - For d3.js, if you want to get the parent node from the data, use the following.
 ```
