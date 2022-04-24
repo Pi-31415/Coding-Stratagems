@@ -7,6 +7,8 @@ My personal accumulation of best pratices and strategies in software development
 ## Variables 
 - Global Variable should never be used unless there is no other way, because the code with global variables is not modular
 
+## Docker
+- using -qq in dockerfile run commands run the commands quietly, and assume yes to all installation prompts
 
 ## Object Oriented
 
