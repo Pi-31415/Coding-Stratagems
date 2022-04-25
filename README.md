@@ -62,6 +62,7 @@ function node_mouseover(d) {
 ## React Native
 - As of 2022, [React Native Paper](https://callstack.github.io/react-native-paper) is the only UI library which works out of the box without any dependency issues.
 - ``npm audit fix --force`` is very dangerous, and can break the dependencies
+- If the app icon is not working on iOS, restart the device.
 
 ## C++
 - Getter functions must have ``const``.
