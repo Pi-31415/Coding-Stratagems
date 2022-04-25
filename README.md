@@ -2,6 +2,7 @@
 My personal accumulation of best pratices and strategies in software development
 
 ## Essential
+- Whenever you write code, write in the standard way and not in unconventional ways. This is because if you write it in unconventional ways, and visit the same code a year later and do not understand and have to google it, google will not show results.
 - Always check the limits of data types to make sure maximum value can be stored. Otherwise, overflow will caluse unexpected errors, which are runtime. (e.g. int data type cannot hold 14 factorial)
 
 ## Variables 
