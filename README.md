@@ -2,6 +2,7 @@
 My personal accumulation of best pratices and strategies in software development
 
 ## Essential
+- Never use multiple inheritance. There is always a way to avoid it.
 - If the build doesn't work, the dependencies are most likely the culprit.
 - Whenever you write code, write in the standard way and not in unconventional ways. This is because if you write it in unconventional ways, and visit the same code a year later and do not understand and have to google it, google will not show results.
 - Always check the limits of data types to make sure maximum value can be stored. Otherwise, overflow will caluse unexpected errors, which are runtime. (e.g. int data type cannot hold 14 factorial)
@@ -63,6 +64,7 @@ function node_mouseover(d) {
 - Use ``nullptr`` instead of ``NULL``. Because ``NULL`` is a macro for the 0 literal, and it can be ambigious with int data type.
 - Don't use ``friend`` unless you really need to, because it might accidentally change the data.
 - C++ is one of the two languages which supports **Multiple inheritance**. Never use it unless you have a really really good reason.
+- C++ supports multiple inheritance and Java doesn't.
 
 ## C# (Unity)
 - For Physics based calculations (e.g. Forces on RigidBodies), put them in FixedUpdate() function instead of Update() - because Update() is called once per frame only, and FixedUpdate() can be called as many times as the physics engine needs.
