@@ -58,6 +58,7 @@ function node_mouseover(d) {
 - As of 2022, [React Native Paper](https://callstack.github.io/react-native-paper) is the only UI library which works out of the box without any dependency issues.
 
 ## C++
+- Optimize memory with pass by reference, but use ``const`` to prevent accidental changes.
 - Use of inline functions is more efficient
 - Use '\n' instead of endl. \n does not call a flushing output buffer everytime it is called, so it is more efficient.
 - Pass by reference does not create a new variable, so it saves memory.
