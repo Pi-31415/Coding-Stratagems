@@ -1,6 +1,9 @@
 # Coding-Stratagems
 My personal accumulation of best pratices and strategies in software development
 
+<hr>
+# General
+
 ## Essential
 - Never use multiple inheritance. There is always a way to avoid it.
 - If the build doesn't work, the dependencies are most likely the culprit.
@@ -10,10 +13,14 @@ My personal accumulation of best pratices and strategies in software development
 ## Variables 
 - Global Variable should never be used unless there is no other way, because the code with global variables is not modular
 
+## Web
+- If something does not work upon deploy, check if the deployment is on https
+
+<hr>
+# Language/Platform Specific
+
 ## Docker
 - using -qq in dockerfile run commands run the commands quietly, and assume yes to all installation prompts
-
-## Object Oriented
 
 ## NPM
 - If the builds doesn't work, it is likely that the software/dependency versions are not compatible with each other.
