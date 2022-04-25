@@ -2,7 +2,6 @@
 My personal accumulation of best pratices and strategies in software development
 
 <hr>
-# General
 
 ## Essential
 - Never use multiple inheritance. There is always a way to avoid it.
@@ -17,7 +16,6 @@ My personal accumulation of best pratices and strategies in software development
 - If something does not work upon deploy, check if the deployment is on https
 
 <hr>
-# Language/Platform Specific
 
 ## Docker
 - using -qq in dockerfile run commands run the commands quietly, and assume yes to all installation prompts
