@@ -4,7 +4,7 @@ My personal accumulation of best pratices and strategies in software development
 <hr>
 
 ## Essential
-- Always refactor, and reduce code bloat using iterators.
+- Always refactor, and reduce [code bloat](https://en.wikipedia.org/wiki/Code_bloat) using iterators.
 - Never use multiple inheritance. There is always a way to avoid it.
 - If the build doesn't work, the dependencies are most likely the culprit.
 - Whenever you write code, write in the standard way and not in unconventional ways. This is because if you write it in unconventional ways, and visit the same code a year later and do not understand and have to google it, google will not show results.
