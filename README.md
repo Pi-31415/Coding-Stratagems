@@ -52,12 +52,21 @@ data.save('aaaa16.png')
 
 ## JavaScript
 - For d3.js, if you want to get the parent node from the data, use the following.
-```
+```javascript
 function node_mouseover(d) {
   //Get the parent node
   var g = d3.select(this);
   }
 }
+```
+
+- For d3.js, to get data from d, get with
+```javascript
+.on("mouseover", function (d) {
+          d3.select(this).style("cursor", "pointer");
+          var g = d3.select(this);
+          console.log(d.target.__data__);
+        })
 ```
 
 ## React Native
