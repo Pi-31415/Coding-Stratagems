@@ -68,6 +68,7 @@ function node_mouseover(d) {
           console.log(d.target.__data__);
         })
 ```
+- Javascript event listener function only takes event as a parameter. Get the data within that event.
 
 ## React Native
 - As of 2022, [React Native Paper](https://callstack.github.io/react-native-paper) is the only UI library which works out of the box without any dependency issues.
