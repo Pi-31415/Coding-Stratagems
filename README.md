@@ -70,6 +70,9 @@ function node_mouseover(d) {
 ```
 - Javascript event listener function only takes event as a parameter. Get the data within that event.
 
+## React
+- If you need to pass data from child to parent, follow [this](https://javascript.plainenglish.io/how-to-pass-props-from-child-to-parent-component-in-react-d90752ff4d01).
+
 ## React Native
 - As of 2022, [React Native Paper](https://callstack.github.io/react-native-paper) is the only UI library which works out of the box without any dependency issues.
 - ``npm audit fix --force`` is very dangerous, and can break the dependencies
