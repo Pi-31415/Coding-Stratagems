@@ -4,6 +4,7 @@ My personal accumulation of best pratices and strategies in software development
 <hr>
 
 ## Essential
+- In interviews, don't be a hot-headed person. In design problems, the solution depends on the application. Try to have a conversation with the interviewer to explore all the possibilities.
 - Always refactor, and reduce [code bloat](https://en.wikipedia.org/wiki/Code_bloat) using iterators.
 - Never use multiple inheritance. There is always a way to avoid it.
 - If the build doesn't work, the dependencies are most likely the culprit.
@@ -88,6 +89,7 @@ function node_mouseover(d) {
 - Don't use ``friend`` unless you really need to, because it might accidentally change the data.
 - C++ is one of the two languages which supports **Multiple inheritance**. Never use it unless you have a really really good reason.
 - C++ supports multiple inheritance and Java doesn't.
+- For big projects, use smart pointers.
 
 ## C# (Unity)
 - For Physics based calculations (e.g. Forces on RigidBodies), put them in FixedUpdate() function instead of Update() - because Update() is called once per frame only, and FixedUpdate() can be called as many times as the physics engine needs.
