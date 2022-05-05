@@ -108,3 +108,7 @@ https://www.geeksforgeeks.org/difference-between-private-and-protected-in-c-with
 
 ## C++ Custom keywords
 - Wow, you can create your own keywords.
+
+## Lubuntu - lightweight OS
+
+Most of the times, you don't want to use dynamic memory allocation
