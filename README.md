@@ -4,6 +4,7 @@ My personal accumulation of best pratices and strategies in software development
 <hr>
 
 ## Essential
+- Always, always, always use exception handling.
 - In interviews, don't be a hot-headed person. In design problems, the solution depends on the application. Try to have a conversation with the interviewer to explore all the possibilities.
 - Always refactor, and reduce [code bloat](https://en.wikipedia.org/wiki/Code_bloat) using iterators.
 - Never use multiple inheritance. There is always a way to avoid it.
