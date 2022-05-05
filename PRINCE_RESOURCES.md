@@ -122,4 +122,5 @@ C++ default
 
 **IMPORTANT : ** The bigger the memory, the slower the computer is. The faster the memory, the more expensive the computer is. There are different types of memory.
 
+Inheritance is an **is a** relationship.
 
