@@ -114,3 +114,8 @@ https://www.geeksforgeeks.org/difference-between-private-and-protected-in-c-with
 Most of the times, you don't want to use dynamic memory allocation
 
 **FOR INTERVIEWS:** There are no clear answers, have a conversation with the interviewer.
+
+C++ Delete constructor
+
+
+C++ default
