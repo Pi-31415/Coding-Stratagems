@@ -119,3 +119,7 @@ C++ Delete constructor
 
 
 C++ default
+
+**IMPORTANT : ** The bigger the memory, the slower the computer is. The faster the memory, the more expensive the computer is. 
+
+
