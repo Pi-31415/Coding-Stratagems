@@ -84,6 +84,7 @@ function node_mouseover(d) {
 - If the app icon is not working on iOS, restart the device.
 
 ## C++
+- Segmentation faults cannot be caught via ``try...catch``.
 - Getter functions must have ``const``.
 - Optimize memory with pass by reference, but use ``const`` to prevent accidental changes.
 - Use of inline functions is more efficient
