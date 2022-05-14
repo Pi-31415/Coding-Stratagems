@@ -26,8 +26,9 @@ My personal accumulation of best pratices and strategies in software development
 ## Docker
 - using -qq in dockerfile run commands run the commands quietly, and assume yes to all installation prompts
 
-## NPM
+## Node/NPM
 - If the builds doesn't work, it is likely that the software/dependency versions are not compatible with each other.
+- Node, deploying on heroku and running out of memory (https://stackoverflow.com/questions/59205530/heroku-server-crashes-with-javascript-heap-out-of-memory-when-deploying-react)
 
 ## Python
 - Quick setup virtual environment and set up packages
