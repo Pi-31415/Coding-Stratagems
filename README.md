@@ -28,7 +28,8 @@ My personal accumulation of best pratices and strategies in software development
 
 ## Node/NPM
 - If the builds doesn't work, it is likely that the software/dependency versions are not compatible with each other.
-- Node, deploying on heroku and running out of memory (https://stackoverflow.com/questions/59205530/heroku-server-crashes-with-javascript-heap-out-of-memory-when-deploying-react)
+- [Node, deploying on heroku and running out of memory](https://stackoverflow.com/questions/59205530/heroku-server-crashes-with-javascript-heap-out-of-memory-when-deploying-react)
+- [Handling CORS with Node JS](https://stackabuse.com/handling-cors-with-node-js/)
 
 ## Python
 - Quick setup virtual environment and set up packages
