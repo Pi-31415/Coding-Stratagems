@@ -34,6 +34,9 @@ heroku config:set NODE_OPTIONS='--max_old_space_size=2560 [app-name]'
 ```
 - [Handling CORS with Node JS](https://stackabuse.com/handling-cors-with-node-js/)
 
+## React 
+- Prevent double loading of useEffect [Link](https://dev.to/ag-grid/react-18-avoiding-use-effect-getting-called-twice-4i9e).
+
 ## Python
 - Quick setup virtual environment and set up packages
 ```
