@@ -34,9 +34,6 @@ heroku config:set NODE_OPTIONS='--max_old_space_size=2560 [app-name]'
 ```
 - [Handling CORS with Node JS](https://stackabuse.com/handling-cors-with-node-js/)
 
-## React 
-- Prevent double loading of useEffect [Link](https://dev.to/ag-grid/react-18-avoiding-use-effect-getting-called-twice-4i9e).
-
 ## Python
 - Quick setup virtual environment and set up packages
 ```
@@ -85,6 +82,7 @@ function node_mouseover(d) {
 
 ## React
 - If you need to pass data from child to parent, follow [this](https://javascript.plainenglish.io/how-to-pass-props-from-child-to-parent-component-in-react-d90752ff4d01).
+- Prevent double loading of useEffect - [Link](https://dev.to/ag-grid/react-18-avoiding-use-effect-getting-called-twice-4i9e).
 
 ## React Native
 - As of 2022, [React Native Paper](https://callstack.github.io/react-native-paper) is the only UI library which works out of the box without any dependency issues.
