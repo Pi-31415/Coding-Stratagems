@@ -34,6 +34,9 @@ heroku config:set NODE_OPTIONS='--max_old_space_size=2560 [app-name]'
 ```
 - [Handling CORS with Node JS](https://stackabuse.com/handling-cors-with-node-js/)
 
+## JavaScript
+- Leaftlet JS Multiple Map Instances- [tutorial](https://programmierfrage.com/items/how-to-implement-multiple-leaflet-js-maps)
+
 ## Python
 - Quick setup virtual environment and set up packages
 ```
