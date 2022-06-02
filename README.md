@@ -28,6 +28,7 @@ My personal accumulation of best pratices and strategies in software development
 
 ## Embedded Systems
 - For multithreading on Arduino, use [SoftTimers](https://github.com/end2endzone/SoftTimers)
+- Return value for millis() is of type unsigned long, logic errors may occur if a programmer tries to do arithmetic with smaller data types such as int.
 
 ## Node/NPM
 - If the builds doesn't work, it is likely that the software/dependency versions are not compatible with each other.
