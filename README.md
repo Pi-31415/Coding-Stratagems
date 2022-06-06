@@ -30,6 +30,9 @@ My personal accumulation of best pratices and strategies in software development
 - For multithreading on Arduino, use [SoftTimers](https://github.com/end2endzone/SoftTimers)
 - Return value for millis() is of type unsigned long, logic errors may occur if a programmer tries to do arithmetic with smaller data types such as int.
 
+## Electron
+- For windows build, when using `electron-builder`, remember to set `powershell Set-ExecutionPolicy RemoteSigned` to run the scripts.
+
 ## Node/NPM
 - If the builds doesn't work, it is likely that the software/dependency versions are not compatible with each other.
 - [Node, deploying on heroku and running out of memory](https://stackoverflow.com/questions/59205530/heroku-server-crashes-with-javascript-heap-out-of-memory-when-deploying-react). Use the following to increase maximum heap size of heroku node.
