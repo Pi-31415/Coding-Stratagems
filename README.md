@@ -90,6 +90,9 @@ function node_mouseover(d) {
 ```
 - Javascript event listener function only takes event as a parameter. Get the data within that event.
 
+## Remote Access
+- Use [NoMachine](https://www.nomachine.com/)
+
 ## React
 - If you need to pass data from child to parent, follow [this](https://javascript.plainenglish.io/how-to-pass-props-from-child-to-parent-component-in-react-d90752ff4d01).
 - Prevent double loading of useEffect - [Link](https://dev.to/ag-grid/react-18-avoiding-use-effect-getting-called-twice-4i9e).
