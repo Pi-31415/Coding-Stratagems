@@ -66,6 +66,52 @@ data = im.fromarray((my_data * 20).astype(np.uint8))
 data.save('aaaa16.png')
 
 ```
+- PIL remove Alpha Channel
+```python
+from os.path import isfile, join
+from os import listdir
+from PIL import Image
+
+# Replace the following with your path
+folder_path = "/Users/pi/Desktop/Dataset Structured/Sherifa/"
+# Replace with any of the following - brick,cementitious_debris,PVC,rebar,wires
+object_type = "rebar"
+
+onlyfiles = [f for f in listdir(folder_path) if isfile(join(folder_path, f))]
+for x in onlyfiles:
+    if(object_type in x):
+        try:
+            png = Image.open(
+                folder_path+x)
+            png.load()  # required for png.split()
+
+            background = Image.new("RGB", png.size, (255, 255, 255))
+            # 3 is the alpha channel
+            background.paste(png, mask=png.split()[3])
+            background.save(
+                folder_path+x, 'JPEG', quality=80)
+            print("Converted "+x+" to RGB.")
+        except:
+            print("Cannot convert "+x+" to RGB, skipping...")
+```
+
+- Mass Rename Files
+```python
+from os.path import isfile, join
+from os import listdir
+import os
+from PIL import Image
+
+# Replace the following with your path
+folder_path = "/Users/pi/Desktop/Drone Data/outdoor_drone"
+
+onlyfiles = [f for f in listdir(folder_path) if isfile(join(folder_path, f))]
+for x in onlyfiles:
+    if(".JPG" in x):
+        old_name = folder_path+"/"+x
+        new_name = folder_path+"/"+x.replace(".JPG", ".jpg")
+        os.rename(old_name, new_name)
+```
 
 ## Markdown
 - Syntax highlighting can be done in code blocks by adding the name of the language after the triple quotes.
