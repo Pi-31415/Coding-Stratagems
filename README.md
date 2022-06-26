@@ -46,6 +46,10 @@ heroku config:set NODE_OPTIONS='--max_old_space_size=2560 [app-name]'
 - Leaftlet JS Multiple Map Instances- [tutorial](https://programmierfrage.com/items/how-to-implement-multiple-leaflet-js-maps)
 
 ## Python
+- Force to run on python 3
+```
+python3 -m [command]
+```
 - Quick setup virtual environment and set up packages
 ```
 python3 -m venv packenv
