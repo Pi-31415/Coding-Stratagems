@@ -171,3 +171,16 @@ function node_mouseover(d) {
 
 ## C# (Unity)
 - For Physics based calculations (e.g. Forces on RigidBodies), put them in FixedUpdate() function instead of Update() - because Update() is called once per frame only, and FixedUpdate() can be called as many times as the physics engine needs.
+- For LineRenderer, if it is lagging for ``lineRenderer.SetPosition``, use delegate like in this [tutorial](https://answers.unity.com/questions/1742489/linerenderer-lagging-behind.html).
+```csharp
+ private void OnEnable()
+ {
+     Application.onBeforeRender += UpdateRoute;
+ }
+ 
+ private void OnDisable()
+ {
+     Application.onBeforeRender -= UpdateRoute;
+ }
+
+```
