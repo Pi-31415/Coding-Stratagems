@@ -170,6 +170,7 @@ function node_mouseover(d) {
 - Don't forget to install the XR Plugin in Unity during setup.
 
 ## C# (Unity)
+- Use [Unity Photon](https://www.photonengine.com/pun) for multiplayer games.
 - For Physics based calculations (e.g. Forces on RigidBodies), put them in FixedUpdate() function instead of Update() - because Update() is called once per frame only, and FixedUpdate() can be called as many times as the physics engine needs.
 - For LineRenderer, if it is lagging for ``lineRenderer.SetPosition``, use delegate like in this [tutorial](https://answers.unity.com/questions/1742489/linerenderer-lagging-behind.html).
 ```csharp
