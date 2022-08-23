@@ -167,9 +167,11 @@ function node_mouseover(d) {
 - For big projects, use smart pointers.
 
 ## VR/AR
-- Don't forget to install the XR Plugin in Unity during setup.
+- Don't forget to install the XR Plugin in 
+during setup.
 
 ## C# (Unity)
+- If build fails with the error - [The type or namespace name ‘Editor’ could not be found](https://qa.fmod.com/t/unity-2020-3-8f-build-fails-because-fmod-2-01-09/17751)- put the plugin folder in the Assets/Editor folder
 - Use [Unity Photon](https://www.photonengine.com/pun) for multiplayer games.
 - For Physics based calculations (e.g. Forces on RigidBodies), put them in FixedUpdate() function instead of Update() - because Update() is called once per frame only, and FixedUpdate() can be called as many times as the physics engine needs.
 - For LineRenderer, if it is lagging for ``lineRenderer.SetPosition``, use delegate like in this [tutorial](https://answers.unity.com/questions/1742489/linerenderer-lagging-behind.html).
