@@ -286,3 +286,7 @@ public class DrawRect : MonoBehaviour
 ```bash
 objdump -d CPUBenchmark | grep mul | wc -l
 ```
+
+```bash
+sudo perf stat ./lin
+```
