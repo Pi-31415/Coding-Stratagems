@@ -278,3 +278,11 @@ public class DrawRect : MonoBehaviour
 }
 
 ```
+
+
+
+# Optimizing and Piping
+
+```bash
+objdump -d CPUBenchmark | grep mul | wc -l
+```
