@@ -290,3 +290,7 @@ objdump -d CPUBenchmark | grep mul | wc -l
 ```bash
 sudo perf stat ./lin
 ```
+
+
+## C and Assembly
+- Never never use ```goto```.
