@@ -122,7 +122,7 @@ for x in onlyfiles:
 - Syntax highlighting can be done in code blocks by adding the name of the language after the triple quotes.
 
 ## JavaScript
-- For O(1) JS, use (Qwik)[https://qwik.builder.io/]
+- For O(1) JS, use [Qwik](https://qwik.builder.io/)
 - For d3.js, if you want to get the parent node from the data, use the following.
 ```javascript
 function node_mouseover(d) {
