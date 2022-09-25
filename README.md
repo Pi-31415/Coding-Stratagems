@@ -31,6 +31,9 @@ My personal accumulation of best pratices and strategies in software development
 - For multithreading on Arduino, use [SoftTimers](https://github.com/end2endzone/SoftTimers)
 - Return value for millis() is of type unsigned long, logic errors may occur if a programmer tries to do arithmetic with smaller data types such as int.
 
+## CUDA
+- If the CUDA does not work, it may be due to secureboot.
+
 ## Electron
 - For windows build, when using `electron-builder`, remember to set `powershell Set-ExecutionPolicy RemoteSigned` to run the scripts.
 
