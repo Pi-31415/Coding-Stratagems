@@ -301,3 +301,6 @@ sudo perf stat ./lin
 
 ## macOS
 - [How to add shortcut for Terminal](https://clay-atlas.com/us/blog/2020/12/14/mac-os-en-open-terminal-by-shortcut-key/)
+
+## Ubuntu/Linux
+- [Get Quick Look with Gnome Sushi](https://www.omgubuntu.co.uk/gnome-sushi-mac-quick-for-ubuntu)
