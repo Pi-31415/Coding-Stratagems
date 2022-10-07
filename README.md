@@ -304,3 +304,4 @@ sudo perf stat ./lin
 
 ## Ubuntu/Linux
 - [Get Quick Look with Gnome Sushi](https://www.omgubuntu.co.uk/gnome-sushi-mac-quick-for-ubuntu)
+- [Install specific unity version on Linux](https://forum.unity.com/threads/how-to-install-a-specific-version-of-unity-on-linux.883738/)
