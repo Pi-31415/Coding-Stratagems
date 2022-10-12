@@ -301,6 +301,10 @@ sudo perf stat ./lin
 
 ## macOS
 - [How to add shortcut for Terminal](https://clay-atlas.com/us/blog/2020/12/14/mac-os-en-open-terminal-by-shortcut-key/)
+- If you cannot run an old program, use
+```
+ xattr -cr /Users/pi/Desktop/dungeon_v1.3.0_osx/DungeonGenerator.app   
+```
 
 ## Ubuntu/Linux
 - [Get Quick Look with Gnome Sushi](https://www.omgubuntu.co.uk/gnome-sushi-mac-quick-for-ubuntu)
