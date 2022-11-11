@@ -311,3 +311,12 @@ sudo perf stat ./lin
 - [Install specific unity version on Linux](https://forum.unity.com/threads/how-to-install-a-specific-version-of-unity-on-linux.883738/)
 - The standard error can be pipelined with ```2>```
 - Execute one command inside another with `.
+- Quickly locate files on ubuntu ```sudo apt-get install mlocate```
+- Open HEIC images in ubuntu 
+
+In recent Ubuntu versions (>= 18.04):
+
+```sudo apt-get install libheif-examples```
+And then
+
+```for file in *.heic; do heif-convert $file ${file/%.heic/.jpg}; done```
