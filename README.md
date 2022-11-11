@@ -306,6 +306,9 @@ sudo perf stat ./lin
  xattr -cr /Users/pi/Desktop/dungeon_v1.3.0_osx/DungeonGenerator.app   
 ```
 
+## ROS
+- Use both anaconda and ROS libuuid error (https://blog.csdn.net/qq_36013249/article/details/103311001)
+
 ## Ubuntu/Linux
 - [Get Quick Look with Gnome Sushi](https://www.omgubuntu.co.uk/gnome-sushi-mac-quick-for-ubuntu)
 - [Install specific unity version on Linux](https://forum.unity.com/threads/how-to-install-a-specific-version-of-unity-on-linux.883738/)
