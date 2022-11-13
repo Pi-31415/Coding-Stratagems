@@ -309,6 +309,18 @@ sudo perf stat ./lin
 ## ROS
 - Use both anaconda and ROS libuuid error (https://blog.csdn.net/qq_36013249/article/details/103311001)
 
+
+## Regex
+- To find all the decimals or numerical values in the string
+```python
+if("rate" in parameter):
+    # Decimals
+    reg_expression = r'[\d]*[.][\d]+'
+else:
+    # Integers
+    reg_expression = r'[\d]+'
+```
+
 ## Ubuntu/Linux
 - [Get Quick Look with Gnome Sushi](https://www.omgubuntu.co.uk/gnome-sushi-mac-quick-for-ubuntu)
 - [Install specific unity version on Linux](https://forum.unity.com/threads/how-to-install-a-specific-version-of-unity-on-linux.883738/)
