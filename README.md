@@ -175,6 +175,7 @@ function node_mouseover(d) {
 during setup.
 
 ## C# (Unity)
+- **Very Important** You cannot use two load asyncs in the same scene, otherwise they will cause conflict in the routine. This happens in both playmaker and in pure C sharp.x
 - If build fails with the error - [The type or namespace name ‘Editor’ could not be found](https://qa.fmod.com/t/unity-2020-3-8f-build-fails-because-fmod-2-01-09/17751)- put the plugin folder in the Assets/Editor folder
 - Use [Unity Photon](https://www.photonengine.com/pun) for multiplayer games.
 - For Physics based calculations (e.g. Forces on RigidBodies), put them in FixedUpdate() function instead of Update() - because Update() is called once per frame only, and FixedUpdate() can be called as many times as the physics engine needs.
