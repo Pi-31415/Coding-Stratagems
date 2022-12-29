@@ -12,6 +12,7 @@ My personal accumulation of best pratices and strategies in software development
 - Whenever you write code, write in the standard way and not in unconventional ways. This is because if you write it in unconventional ways, and visit the same code a year later and do not understand and have to google it, google will not show results.
 - Always check the limits of data types to make sure maximum value can be stored. Otherwise, overflow will caluse unexpected errors, which are runtime. (e.g. int data type cannot hold 14 factorial)
 - Whenever you are planning to refer to an array element by its index (e.g. array[0]), make sure that the array is **sorted** in the first place. If you plug in directly from the API, the indices will mess up.
+- Usually if the library has a community version, use it. It is generally more stable.
 
 ## Networking
 - For checking networks, always use exception handling to check the network.
