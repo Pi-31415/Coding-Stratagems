@@ -50,6 +50,27 @@ heroku config:set NODE_OPTIONS='--max_old_space_size=2560 [app-name]'
 - Leaftlet JS Multiple Map Instances- [tutorial](https://programmierfrage.com/items/how-to-implement-multiple-leaflet-js-maps)
 
 ## Python
+
+- Split the audio file based on silence
+```python
+#Importing library and thir function
+from pydub import AudioSegment
+from pydub.silence import split_on_silence
+
+#reading from audio mp3 file
+sound = AudioSegment.from_mp3("droppyA.mp3")
+
+# spliting audio files
+audio_chunks = split_on_silence(sound, min_silence_len=1000, silence_thresh=-40 )
+
+#loop is used to iterate over the output list
+for i, chunk in enumerate(audio_chunks):
+   output_file = "out/Droppy{0}.mp3".format(i)
+   print("Exporting file", output_file)
+   chunk.export(output_file, format="mp3")
+
+# chunk files saved as Output
+```
 - Force to run on python 3
 ```
 python3 -m [command]
