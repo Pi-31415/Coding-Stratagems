@@ -40,6 +40,10 @@ My personal accumulation of best pratices and strategies in software development
 
 ## Node/NPM
 - If the builds doesn't work, it is likely that the software/dependency versions are not compatible with each other.
+- **[IMPORTANT]** If you want to build a deprecated project, enable legacy option with
+```
+export NODE_OPTIONS=--openssl-legacy-provider
+```
 - [Node, deploying on heroku and running out of memory](https://stackoverflow.com/questions/59205530/heroku-server-crashes-with-javascript-heap-out-of-memory-when-deploying-react). Use the following to increase maximum heap size of heroku node.
 ```
 heroku config:set NODE_OPTIONS='--max_old_space_size=2560 [app-name]'
