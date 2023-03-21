@@ -206,6 +206,29 @@ during setup.
 - If build fails with the error - [The type or namespace name ‘Editor’ could not be found](https://qa.fmod.com/t/unity-2020-3-8f-build-fails-because-fmod-2-01-09/17751)- put the plugin folder in the Assets/Editor folder
 - Use [Unity Photon](https://www.photonengine.com/pun) for multiplayer games.
 - For Physics based calculations (e.g. Forces on RigidBodies), put them in FixedUpdate() function instead of Update() - because Update() is called once per frame only, and FixedUpdate() can be called as many times as the physics engine needs.
+- To prevent the screen sleeping in mobile devices, use the following script.
+```csharp
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class NoScreenDim : MonoBehaviour
+{
+    // Start is called before the first frame update
+    void Start()
+    {
+      // Disable screen dimming
+        Screen.sleepTimeout = SleepTimeout.NeverSleep;   
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        
+    }
+}
+
+```
 - For LineRenderer, if it is lagging for ``lineRenderer.SetPosition``, use delegate like in this [tutorial](https://answers.unity.com/questions/1742489/linerenderer-lagging-behind.html).
 ```csharp
  private void OnEnable()
