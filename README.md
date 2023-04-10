@@ -373,6 +373,7 @@ else:
 ```
 
 ## Ubuntu/Linux
+- [The problem with snap] ⚠️ The problem with snap in Linux/Ubuntu is that the snap filesystem is mounted as read only so, certain tasks (i.e. customizing the VS code is impossible). Use the apt installations from [here](https://linuxize.com/post/how-to-install-visual-studio-code-on-ubuntu-20-04/#installing-visual-studio-code-with-apt) instead.
 - [Get Quick Look with Gnome Sushi](https://www.omgubuntu.co.uk/gnome-sushi-mac-quick-for-ubuntu)
 - [Install specific unity version on Linux](https://forum.unity.com/threads/how-to-install-a-specific-version-of-unity-on-linux.883738/)
 - The standard error can be pipelined with ```2>```
