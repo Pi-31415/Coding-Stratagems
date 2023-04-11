@@ -184,7 +184,8 @@ function node_mouseover(d) {
 - ``npm audit fix --force`` is very dangerous, and can break the dependencies
 - If the app icon is not working on iOS, restart the device.
 
-## C++
+## C/C++
+- Compile the statically linked library with static flag
 - Segmentation faults cannot be caught via ``try...catch``.
 - Getter functions must have ``const``.
 - Optimize memory with pass by reference, but use ``const`` to prevent accidental changes.
