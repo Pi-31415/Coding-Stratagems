@@ -55,6 +55,53 @@ heroku config:set NODE_OPTIONS='--max_old_space_size=2560 [app-name]'
 
 ## Python
 
+- Text frequency analysis program in python
+
+```python
+
+article = ""
+
+# ---------------------------------------------
+# This part of code is to get the synonyms of the words in the list
+# import requests
+
+# words = ["war", "aggression","arms","weapons","arms race", "rivalry", "conflict", "tension", "hostility", "military", "military action", "military conflict", "military engagement"]
+
+# synonyms_list = []
+
+# for word in words:
+#     response = requests.get("https://api.datamuse.com/words", params={"rel_syn": word})
+#     synonyms = [w["word"] for w in response.json()]
+#     synonyms_list.append(synonyms)
+
+# print(synonyms_list)
+# ---------------------------------------------
+
+word_list = [    'aggression', 'antagonism', 'armed forces', 'arms', 'arms race',    'battle', 'belligerency', 'coat of arms', 'combatant', 'competition',    'conflict', 'contention', 'contravene', 'difference', 'difference of opinion',    'dispute', 'engagement', 'enmity', 'expeditionary', 'fight',    'hostility', 'ill will', 'implements of war', 'infringe', 'latent hostility',    'martial', 'militaristic', 'munition', 'noncombatant', 'rivalry',    'run afoul', 'soldierlike', 'soldierly', 'state of war', 'stress',    'struggle', 'tautness', 'tensity', 'tenseness', 'weaponry',    'weapons', 'weapons system', 'war', 'warfare', 'warlike', 'warriorlike']
+
+import nltk
+from nltk.tokenize import word_tokenize
+
+word_list = [word.lower() for word in word_list]
+
+# Convert article to lowercase and tokenize into a list of words
+article_words = word_tokenize(article.lower())
+
+# Create a frequency distribution of all words in the article
+fdist = nltk.FreqDist(article_words)
+
+# Count the frequency of each word in the word list
+for word in word_list:
+    frequency = fdist.freq(word)
+    # Only print the word if it has a frequency of more than 0.00
+    # Convert frequency into a percentage
+    frequency = round(frequency*100, 2)
+    if frequency > 0.00:
+        print(f"'{word}' - {frequency}%")
+
+
+```
+
 - Split the audio file based on silence
 ```python
 #Importing library and thir function
