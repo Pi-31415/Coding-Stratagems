@@ -397,6 +397,22 @@ sudo perf stat ./lin
 
 ## C and Assembly
 - Never never use ```goto```.
+- 
+
+## Framework 7
+- To view the tabs in framework 7, react. add
+
+```js
+    view:{
+      pushState: true,
+      history: true,
+      pushStateSeparator: "",
+      browserHistory:true,
+      browserHistorySeparator: "",
+    },
+```
+
+in app params.
 
 ## macOS
 - [How to add shortcut for Terminal](https://clay-atlas.com/us/blog/2020/12/14/mac-os-en-open-terminal-by-shortcut-key/)
