@@ -424,6 +424,15 @@ in app params.
 ## ROS
 - Use both anaconda and ROS libuuid error (https://blog.csdn.net/qq_36013249/article/details/103311001)
 
+## FFMPEG
+- Code to convert to high quality gif using palettes
+```bash
+for f in *.mov; do 
+    ffmpeg -i "$f" -vf "fps=20,scale=200:-1:flags=lanczos,palettegen" -y "${f%.mov}_palette.png"
+    ffmpeg -i "$f" -i "${f%.mov}_palette.png" -filter_complex "[0:v]fps=20,scale=200:-1:flags=lanczos[v];[v][1:v]paletteuse" -loop 0 "${f%.mov}.gif"
+    rm "${f%.mov}_palette.png"
+done
+```
 
 ## Regex
 - To find all the decimals or numerical values in the string
