@@ -290,6 +290,441 @@ public class NoScreenDim : MonoBehaviour
  }
 
 ```
+
+- Mesh Subdivision
+```csharp
+using UnityEngine;
+using System.Collections.Generic;
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
+
+/// <summary>
+/// MeshSubdivisionEditor
+/// 
+/// This script allows for the subdivision of a skinned mesh within the Unity Editor.
+/// It increases the mesh's resolution by performing midpoint subdivision while maintaining skinning data.
+/// 
+/// **Algorithm Used**: Midpoint Subdivision
+/// - Each triangle in the mesh is subdivided into four smaller triangles by adding midpoints on each edge.
+/// - The new vertices (midpoints) have interpolated positions, bone weights, and UV coordinates.
+/// 
+/// **Features**:
+/// - Subdivision can be toggled on or off.
+/// - Subdivision level can be adjusted (must be a power of 2: 1, 2, 4, 8).
+/// - Real-time edge visualization in the editor.
+/// - Maintains bone weights and UV mapping.
+/// 
+/// **Usage Instructions**:
+/// 1. Attach this script to a GameObject with a `SkinnedMeshRenderer` component.
+/// 2. In the Inspector, adjust:
+///    - **Subdivide**: Check to enable subdivision, uncheck to disable.
+///    - **Subdivision Level**: Set the level of subdivision (1, 2, 4, or 8).
+/// 3. The mesh will be subdivided in the editor, and the subdivided mesh will be used during play mode.
+/// 4. Edges of the mesh will be visualized when the object is selected.
+/// 
+/// **Author**: Pi Ko (pi.ko@nyu.edu)
+/// </summary>
+[ExecuteInEditMode]
+public class MeshSubdivisionEditor : MonoBehaviour
+{
+    /// <summary>
+    /// Toggle to enable or disable mesh subdivision.
+    /// </summary>
+    [SerializeField]
+    private bool subdivide = false;
+
+    /// <summary>
+    /// Level of subdivision (must be a power of 2: 1, 2, 4, 8).
+    /// </summary>
+    [SerializeField, Range(1, 8)]
+    [Tooltip("Subdivision Level: Must be a power of 2 (1, 2, 4, 8)")]
+    private int subdivisionLevel = 1;
+
+    // Original mesh stored to revert back when subdivision is disabled.
+    private Mesh originalMesh;
+
+    // Subdivided mesh generated based on the subdivision level.
+    private Mesh subdividedMesh;
+
+    // Reference to the SkinnedMeshRenderer component.
+    private SkinnedMeshRenderer skinnedMeshRenderer;
+
+    /// <summary>
+    /// Called when the script instance is being loaded.
+    /// Initializes the SkinnedMeshRenderer and stores the original mesh.
+    /// </summary>
+    void OnEnable()
+    {
+        // Get the SkinnedMeshRenderer component.
+        skinnedMeshRenderer = GetComponent<SkinnedMeshRenderer>();
+
+        if (skinnedMeshRenderer != null)
+        {
+            // Store the original mesh to revert back if needed.
+            originalMesh = skinnedMeshRenderer.sharedMesh;
+        }
+    }
+
+    /// <summary>
+    /// Called every frame in the editor.
+    /// Handles the subdivision logic and updates the mesh accordingly.
+    /// </summary>
+    void Update()
+    {
+#if UNITY_EDITOR
+        // If there is no SkinnedMeshRenderer or original mesh, exit early.
+        if (skinnedMeshRenderer == null || originalMesh == null)
+            return;
+
+        if (subdivide)
+        {
+            // Ensure the subdivision level is a power of two.
+            int level = Mathf.ClosestPowerOfTwo(subdivisionLevel);
+            if (level != subdivisionLevel)
+            {
+                subdivisionLevel = level;
+            }
+
+            string meshName = $"SubdividedMesh_Level_{subdivisionLevel}";
+
+            // Check if the subdivided mesh needs to be regenerated.
+            if (subdividedMesh == null || subdividedMesh.name != meshName)
+            {
+                // Subdivide the original mesh to the desired level.
+                subdividedMesh = SubdivideMesh(originalMesh, subdivisionLevel);
+                subdividedMesh.name = meshName;
+
+                // Assign the subdivided mesh to the SkinnedMeshRenderer.
+                skinnedMeshRenderer.sharedMesh = subdividedMesh;
+            }
+        }
+        else
+        {
+            // If subdivision is disabled, revert to the original mesh.
+            if (skinnedMeshRenderer.sharedMesh != originalMesh)
+            {
+                skinnedMeshRenderer.sharedMesh = originalMesh;
+            }
+        }
+#endif
+    }
+
+    /// <summary>
+    /// Subdivides the mesh to the specified subdivision level.
+    /// </summary>
+    /// <param name="mesh">The mesh to be subdivided.</param>
+    /// <param name="level">The subdivision level (must be a power of two).</param>
+    /// <returns>The subdivided mesh.</returns>
+    Mesh SubdivideMesh(Mesh mesh, int level)
+    {
+        // Create a copy of the mesh to avoid modifying the original.
+        Mesh newMesh = Instantiate(mesh);
+
+        // Calculate the number of subdivision iterations needed.
+        int iterations = (int)Mathf.Log(level, 2);
+        for (int i = 0; i < iterations; i++)
+        {
+            // Perform one subdivision iteration.
+            newMesh = SubdivideOnce(newMesh);
+        }
+
+        return newMesh;
+    }
+
+    /// <summary>
+    /// Performs one iteration of midpoint subdivision on the mesh.
+    /// </summary>
+    /// <param name="mesh">The mesh to subdivide.</param>
+    /// <returns>The subdivided mesh after one iteration.</returns>
+    Mesh SubdivideOnce(Mesh mesh)
+    {
+        // Get the original mesh data.
+        Vector3[] vertices = mesh.vertices;
+        int[] triangles = mesh.triangles;
+        BoneWeight[] boneWeights = mesh.boneWeights;
+        Vector2[] uv = mesh.uv;
+
+        // Prepare data structures for the new subdivided mesh.
+        var edgeMidpoints = new Dictionary<Edge, int>(triangles.Length); // Stores midpoints of edges.
+        var newVertices = new List<Vector3>(vertices); // New vertices including midpoints.
+        var newBoneWeights = new List<BoneWeight>(boneWeights); // New bone weights.
+        var newUVs = new List<Vector2>(uv); // New UV coordinates.
+        var newTriangles = new List<int>(triangles.Length * 4); // New triangles.
+
+        // Iterate over each triangle to subdivide it.
+        for (int i = 0; i < triangles.Length; i += 3)
+        {
+            // Indices of the vertices of the triangle.
+            int v0 = triangles[i];
+            int v1 = triangles[i + 1];
+            int v2 = triangles[i + 2];
+
+            // Get or create midpoints for each edge of the triangle.
+            int m0 = GetMidpointIndex(edgeMidpoints, newVertices, newBoneWeights, newUVs,
+                                      vertices, boneWeights, uv, v0, v1);
+            int m1 = GetMidpointIndex(edgeMidpoints, newVertices, newBoneWeights, newUVs,
+                                      vertices, boneWeights, uv, v1, v2);
+            int m2 = GetMidpointIndex(edgeMidpoints, newVertices, newBoneWeights, newUVs,
+                                      vertices, boneWeights, uv, v2, v0);
+
+            // Create four new triangles from the original triangle and its midpoints.
+            newTriangles.AddRange(new int[] { v0, m0, m2 });
+            newTriangles.AddRange(new int[] { v1, m1, m0 });
+            newTriangles.AddRange(new int[] { v2, m2, m1 });
+            newTriangles.AddRange(new int[] { m0, m1, m2 });
+        }
+
+        // Create a new mesh with the subdivided data.
+        Mesh newMesh = new Mesh();
+
+        // Use 32-bit indices if the vertex count exceeds 65535.
+        newMesh.indexFormat = newVertices.Count > 65535 ?
+            UnityEngine.Rendering.IndexFormat.UInt32 :
+            UnityEngine.Rendering.IndexFormat.UInt16;
+
+        // Assign the new data to the mesh.
+        newMesh.vertices = newVertices.ToArray();
+        newMesh.triangles = newTriangles.ToArray();
+        newMesh.boneWeights = newBoneWeights.ToArray();
+        newMesh.uv = newUVs.ToArray();
+        newMesh.bindposes = mesh.bindposes;
+        newMesh.RecalculateNormals(); // Recalculate normals for proper lighting.
+
+        return newMesh;
+    }
+
+    /// <summary>
+    /// Struct representing an edge between two vertex indices.
+    /// Used for efficient lookup of edge midpoints.
+    /// </summary>
+    struct Edge : System.IEquatable<Edge>
+    {
+        public int v1; // Index of the first vertex.
+        public int v2; // Index of the second vertex.
+
+        /// <summary>
+        /// Initializes a new instance of the Edge struct.
+        /// Ensures consistent ordering for hashing.
+        /// </summary>
+        /// <param name="a">Index of one vertex.</param>
+        /// <param name="b">Index of the other vertex.</param>
+        public Edge(int a, int b)
+        {
+            // Order the vertices to ensure consistency.
+            v1 = a < b ? a : b;
+            v2 = a < b ? b : a;
+        }
+
+        /// <summary>
+        /// Determines whether this edge is equal to another edge.
+        /// </summary>
+        /// <param name="other">The other edge to compare.</param>
+        /// <returns>True if the edges are equal; otherwise, false.</returns>
+        public bool Equals(Edge other)
+        {
+            return v1 == other.v1 && v2 == other.v2;
+        }
+
+        /// <summary>
+        /// Returns a hash code for this edge.
+        /// </summary>
+        /// <returns>A hash code for the current edge.</returns>
+        public override int GetHashCode()
+        {
+            unchecked
+            {
+                // Compute hash code using prime number multiplication.
+                return (v1 * 397) ^ v2;
+            }
+        }
+    }
+
+    /// <summary>
+    /// Gets the index of the midpoint vertex between two vertices.
+    /// If the midpoint already exists, returns its index.
+    /// Otherwise, creates a new midpoint vertex and returns its index.
+    /// </summary>
+    /// <param name="edgeMidpoints">Dictionary storing midpoints of edges.</param>
+    /// <param name="vertices">List of vertices (will be updated with new midpoint).</param>
+    /// <param name="boneWeights">List of bone weights (will be updated with new midpoint).</param>
+    /// <param name="uvs">List of UV coordinates (will be updated with new midpoint).</param>
+    /// <param name="originalVertices">Array of original vertices.</param>
+    /// <param name="originalBoneWeights">Array of original bone weights.</param>
+    /// <param name="originalUVs">Array of original UV coordinates.</param>
+    /// <param name="indexA">Index of the first vertex.</param>
+    /// <param name="indexB">Index of the second vertex.</param>
+    /// <returns>Index of the midpoint vertex.</returns>
+    int GetMidpointIndex(
+        Dictionary<Edge, int> edgeMidpoints,
+        List<Vector3> vertices,
+        List<BoneWeight> boneWeights,
+        List<Vector2> uvs,
+        Vector3[] originalVertices,
+        BoneWeight[] originalBoneWeights,
+        Vector2[] originalUVs,
+        int indexA,
+        int indexB)
+    {
+        // Create an edge between the two vertices.
+        Edge edge = new Edge(indexA, indexB);
+
+        // Check if the midpoint for this edge already exists.
+        if (edgeMidpoints.TryGetValue(edge, out int midpointIndex))
+            return midpointIndex;
+
+        // Calculate the midpoint position.
+        Vector3 midpoint = (originalVertices[indexA] + originalVertices[indexB]) * 0.5f;
+
+        // Interpolate the bone weights for the midpoint.
+        BoneWeight boneWeight = InterpolateBoneWeight(originalBoneWeights[indexA], originalBoneWeights[indexB]);
+
+        // Interpolate the UV coordinates for the midpoint.
+        Vector2 uv = (originalUVs[indexA] + originalUVs[indexB]) * 0.5f;
+
+        // Add the new midpoint vertex to the lists.
+        midpointIndex = vertices.Count;
+        vertices.Add(midpoint);
+        boneWeights.Add(boneWeight);
+        uvs.Add(uv);
+
+        // Store the midpoint index for future reference.
+        edgeMidpoints.Add(edge, midpointIndex);
+
+        return midpointIndex;
+    }
+
+    /// <summary>
+    /// Interpolates bone weights between two vertices.
+    /// Combines and normalizes the bone weights to maintain proper skinning.
+    /// </summary>
+    /// <param name="bw1">BoneWeight of the first vertex.</param>
+    /// <param name="bw2">BoneWeight of the second vertex.</param>
+    /// <returns>Interpolated BoneWeight for the midpoint vertex.</returns>
+    BoneWeight InterpolateBoneWeight(BoneWeight bw1, BoneWeight bw2)
+    {
+        BoneWeight result = new BoneWeight();
+
+        // Arrays to hold weights and bone indices from both vertices.
+        float[] weights = new float[8];
+        int[] boneIndices = new int[8];
+
+        // Collect weights and bone indices from the first vertex.
+        weights[0] = bw1.weight0;
+        weights[1] = bw1.weight1;
+        weights[2] = bw1.weight2;
+        weights[3] = bw1.weight3;
+        boneIndices[0] = bw1.boneIndex0;
+        boneIndices[1] = bw1.boneIndex1;
+        boneIndices[2] = bw1.boneIndex2;
+        boneIndices[3] = bw1.boneIndex3;
+
+        // Collect weights and bone indices from the second vertex.
+        weights[4] = bw2.weight0;
+        weights[5] = bw2.weight1;
+        weights[6] = bw2.weight2;
+        weights[7] = bw2.weight3;
+        boneIndices[4] = bw2.boneIndex0;
+        boneIndices[5] = bw2.boneIndex1;
+        boneIndices[6] = bw2.boneIndex2;
+        boneIndices[7] = bw2.boneIndex3;
+
+        // Dictionary to combine weights for the same bone indices.
+        var boneWeightDict = new Dictionary<int, float>();
+        for (int i = 0; i < 8; i++)
+        {
+            int boneIndex = boneIndices[i];
+            if (boneWeightDict.ContainsKey(boneIndex))
+            {
+                boneWeightDict[boneIndex] += weights[i];
+            }
+            else
+            {
+                boneWeightDict[boneIndex] = weights[i];
+            }
+        }
+
+        // Sort the bone weights in descending order to keep the most significant ones.
+        var sortedWeights = new List<KeyValuePair<int, float>>(boneWeightDict);
+        sortedWeights.Sort((a, b) => b.Value.CompareTo(a.Value));
+
+        // Keep only the top four bone influences.
+        float totalWeight = 0f;
+        int maxWeights = Mathf.Min(4, sortedWeights.Count);
+        for (int i = 0; i < maxWeights; i++)
+        {
+            totalWeight += sortedWeights[i].Value;
+        }
+
+        // Normalize the weights and assign them to the result BoneWeight.
+        if (totalWeight > 0f)
+        {
+            result.boneIndex0 = sortedWeights[0].Key;
+            result.weight0 = sortedWeights[0].Value / totalWeight;
+
+            if (maxWeights > 1)
+            {
+                result.boneIndex1 = sortedWeights[1].Key;
+                result.weight1 = sortedWeights[1].Value / totalWeight;
+            }
+
+            if (maxWeights > 2)
+            {
+                result.boneIndex2 = sortedWeights[2].Key;
+                result.weight2 = sortedWeights[2].Value / totalWeight;
+            }
+
+            if (maxWeights > 3)
+            {
+                result.boneIndex3 = sortedWeights[3].Key;
+                result.weight3 = sortedWeights[3].Value / totalWeight;
+            }
+        }
+
+        return result;
+    }
+
+    /// <summary>
+    /// Draws the mesh edges in the scene view for visualization.
+    /// </summary>
+    void OnDrawGizmos()
+    {
+#if UNITY_EDITOR
+        // Ensure we have a mesh to draw.
+        if (skinnedMeshRenderer != null && skinnedMeshRenderer.sharedMesh != null)
+        {
+            Gizmos.color = Color.yellow; // Set the color for the edges.
+            Mesh mesh = skinnedMeshRenderer.sharedMesh;
+            Vector3[] vertices = mesh.vertices;
+            int[] triangles = mesh.triangles;
+            Transform meshTransform = skinnedMeshRenderer.transform;
+
+            // Transform vertices to world space once for efficiency.
+            Vector3[] worldVertices = new Vector3[vertices.Length];
+            for (int i = 0; i < vertices.Length; i++)
+            {
+                worldVertices[i] = meshTransform.TransformPoint(vertices[i]);
+            }
+
+            // Iterate over each triangle to draw its edges.
+            for (int i = 0; i < triangles.Length; i += 3)
+            {
+                int idx0 = triangles[i];
+                int idx1 = triangles[i + 1];
+                int idx2 = triangles[i + 2];
+
+                // Draw lines between the vertices of the triangle.
+                Gizmos.DrawLine(worldVertices[idx0], worldVertices[idx1]);
+                Gizmos.DrawLine(worldVertices[idx1], worldVertices[idx2]);
+                Gizmos.DrawLine(worldVertices[idx2], worldVertices[idx0]);
+            }
+        }
+#endif
+    }
+}
+
+```
+
 - Draw Bounding Boxes around objects for computer vision like [this](https://answers.unity.com/questions/292031/how-to-display-a-rectangle-around-a-player.html)
 ```csharp
 using System.Collections;
